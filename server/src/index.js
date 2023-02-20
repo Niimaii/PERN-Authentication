@@ -14,7 +14,7 @@ const appStart = () => {
     app.listen(PORT, () => {
       console.log(`The app is running at http://localhost:${PORT}`);
     });
-  } catch (err) {
+  } catch (error) {
     console.log(`Error: ${error.message}`);
   }
 };
