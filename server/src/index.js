@@ -2,6 +2,9 @@ const express = require("express");
 const app = express();
 const { PORT } = require("./constants/index");
 
+// Initialize Middlewares - Allows node send and recieve JSON from the client
+app.use(express.json());
+
 // Import Routes
 const authRoutes = require("./routes/auth");
 
