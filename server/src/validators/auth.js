@@ -1,6 +1,7 @@
 const { check } = require("express-validator");
 const db = require("../db");
 const { compare } = require("bcryptjs");
+const { sign } = require("jsonwebtoken");
 
 // Password - withMessage() sends a message when there is an error
 const password = check("password")
@@ -39,6 +40,9 @@ const loginFieldsCheck = check("email").custom(async (value, { req }) => {
   if (!validPassword) {
     throw new Error("Wrong password");
   }
+
+  // This is adding the user row (from the db) to the req
+  req.user = user.rows[0];
 });
 
 module.exports = {
