@@ -63,3 +63,14 @@ exports.login = async (req, res) => {
     });
   }
 };
+
+exports.protected = async (req, res) => {
+  try {
+    const { rows } = await db.query("select user_id, email from users");
+    res.status(200).json({
+      info: "prtected info",
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
