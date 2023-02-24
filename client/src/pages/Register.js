@@ -1,7 +1,12 @@
 import React from "react";
+import Layout from "../components/Layout";
 
 function Register() {
-  return <div>Register</div>;
+  return (
+    <Layout>
+      <h1>Register</h1>{" "}
+    </Layout>
+  );
 }
 
 export default Register;
