@@ -1,0 +1,28 @@
+/* Navbar */
+.main-nav {
+  background-color: aliceblue;
+  padding: 0 200px;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  height: 30px;
+}
+
+.nav-content {
+  display: flex;
+  gap: 16px;
+}
+
+.navbar {
+  height: 10px;
+}
+
+.nav-home {
+  font-size: 1.8rem;
+}
+
+.nav-home-container {
+  margin-right: auto;
+}

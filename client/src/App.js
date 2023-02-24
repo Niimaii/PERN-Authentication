@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import Navbar from "./components/Navbar";
 
 const PrivateRoutes = () => {
   const isAuth = false;
@@ -27,6 +28,7 @@ const RestrictedRoutes = () => {
 const App = () => {
   return (
     <BrowserRouter>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
 
