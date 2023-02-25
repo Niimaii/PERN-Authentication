@@ -25,6 +25,8 @@ function Login() {
     try {
       await onLogin(values);
       dispatch(authenticateUser());
+
+      localStorage.setItem('isAuth', 'true');
     } catch (error) {
       console.log(error.response.data.errors[0].msg);
       setError(error.response.data.errors[0].msg);
