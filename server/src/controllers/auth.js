@@ -1,13 +1,13 @@
-const db = require("../db/index");
-const { hash } = require("bcryptjs");
-const { SECRET } = require("../constants/index");
-const { sign } = require("jsonwebtoken");
+const db = require('../db/index');
+const { hash } = require('bcryptjs');
+const { SECRET } = require('../constants/index');
+const { sign } = require('jsonwebtoken');
 
 exports.getUsers = async (req, res) => {
   try {
-    const { rows } = await db.query("select user_id, email from users");
+    const { rows } = await db.query('select user_id, email from users');
     res.status(200).json({
-      sucess: true,
+      success: true,
       users: rows,
     });
   } catch (error) {
@@ -21,17 +21,17 @@ exports.register = async (req, res) => {
   try {
     // Inserting the incrypted password and standard email into db
     const hashedPassword = await hash(password, 10);
-    await db.query("INSERT INTO users(email, password) VALUES ($1, $2)", [
+    await db.query('INSERT INTO users(email, password) VALUES ($1, $2)', [
       email,
       hashedPassword,
     ]);
 
     return res.status(201).json({
-      sucess: true,
-      message: "The registration was successful",
+      success: true,
+      message: 'The registration was successful',
     });
 
-    console.log("validation passed");
+    console.log('validation passed');
   } catch (error) {
     console.log(error.message);
     return res.status(500).json({
@@ -52,9 +52,9 @@ exports.login = async (req, res) => {
     const token = await sign(payload, SECRET);
 
     // *TODO* go over cookie
-    return res.status(200).cookie("token", token, { httpOnly: true }).json({
+    return res.status(200).cookie('token', token, { httpOnly: true }).json({
       success: true,
-      message: "Logged in successfully",
+      message: 'Logged in successfully',
     });
   } catch (error) {
     console.log(error.message);
@@ -66,9 +66,9 @@ exports.login = async (req, res) => {
 
 exports.protected = async (req, res) => {
   try {
-    const { rows } = await db.query("select user_id, email from users");
+    const { rows } = await db.query('select user_id, email from users');
     res.status(200).json({
-      info: "prtected info",
+      info: 'protected info',
     });
   } catch (error) {
     console.log(error.message);
@@ -77,9 +77,9 @@ exports.protected = async (req, res) => {
 
 exports.logout = async (req, res) => {
   try {
-    return res.status(200).clearCookie("token", { httpOnly: true }).json({
+    return res.status(200).clearCookie('token', { httpOnly: true }).json({
       success: true,
-      message: "Logged out successfully",
+      message: 'Logged out successfully',
     });
   } catch (error) {
     console.log(error.message);
